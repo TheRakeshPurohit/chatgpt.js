@@ -1,9 +1,28 @@
+<div align="center">
+    <h6>
+        <a href="./">
+            <picture>
+                <source type="image/svg+xml" media="(prefers-color-scheme: dark)" srcset="https://assets.chatgptjs.org/images/icons/earth/white/icon32.svg?v=e638eac">
+               <img height=14 src="https://assets.chatgptjs.org/images/icons/earth/black/icon32.svg?v=e638eac">
+            </picture>
+        </a>
+        English |
+        <a href="https://docs.chatgptjs.org/zh-cn/SECURITY.md">简体中文</a> |
+        <a href="https://docs.chatgptjs.org/zh-tw/SECURITY.md">繁體中文</a> |
+        <a href="https://docs.chatgptjs.org/ja/SECURITY.md">日本</a> |
+        <a href="https://docs.chatgptjs.org/ko/SECURITY.md">한국인</a> |
+        <a href="https://docs.chatgptjs.org/hi/SECURITY.md">हिंदी</a> |
+        <a href="https://docs.chatgptjs.org/np/SECURITY.md">नेपाली</a> |
+        <a href="https://docs.chatgptjs.org/de/SECURITY.md">Deutsch</a> |
+        <a href="https://docs.chatgptjs.org/es/SECURITY.md">Español</a> |
+        <a href="https://docs.chatgptjs.org/fr/SECURITY.md">Français</a> |
+        <a href="https://docs.chatgptjs.org/it/SECURITY.md">Italiano</a> |
+        <a href="https://docs.chatgptjs.org/nl/SECURITY.md">Nederlands</a> |
+        <a href="https://docs.chatgptjs.org/pt/SECURITY.md">Português</a> |
+        <a href="https://docs.chatgptjs.org/vi/SECURITY.md">Việt</a>
+    </h6>
+</div>
+
 # Security Policy
 
-##### English | [简体中文](https://github.com/kudoai/chatgpt.js/blob/main/docs/zh-cn/SECURITY.md) | [हिंदी ](https://github.com/kudoai/chatgpt.js/blob/main/docs/hi/SECURITY.md)
-
-<br>
-
-If you find a vulnerability, please open a [draft security advisory](https://github.com/kudoai/chatgpt.js/security/advisories/new).
-
-Pull requests are also welcome, but for safety reasons, send an email to security@chatgptjs.org and wait for a response before making it public.
+If you find a vulnerability, please follow the reporting instructions @ https://tidelift.com/security
