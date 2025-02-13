@@ -1,50 +1,85 @@
 {
-  "name": "chatgpt",
-  "version": "1.11.0",
+  "name": "@kudoai/chatgpt.js",
+  "version": "3.6.3",
   "description": "Client-side JavaScript library for ChatGPT",
-  "main": "chatgpt.js",
+  "author": {
+    "name": "KudoAI & contributors",
+    "email": "opensource@kudoai.com",
+    "url": "https://www.kudoai.com"
+  },
+  "homepage": "https://chatgpt.js.org",
+  "license": "MIT",
+  "funding": {
+    "type": "github",
+    "url": "http://github.com/sponsors/KudoAI"
+  },
+  "browser": "chatgpt.js",
+  "files": [
+    "chatgpt.js",
+    "dist/chatgpt.min.js",
+    "docs/*.md",
+    "starters/",
+    "!starters/**/docs/*/"
+  ],
   "scripts": {
-    "lint": "eslint . --ext .js",
-    "lint:fix": "eslint . --ext .js --fix",
+    "prepare": "husky",
+    "lint": "eslint . --cache",
+    "lint:all": "eslint .",
+    "lint:fix": "eslint . --fix --cache",
+    "lint:fix-all": "eslint . --fix",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "uglifyjs chatgpt.js -o dist/chatgpt.min.js"
+    "preview:docs": "node utils/preview-docs",
+    "build:js": "bash utils/build.sh",
+    "build:js-docs": "minify-js docs --no-mangle",
+    "build:docs-js": "minify-js docs --no-mangle",
+    "build:css": "scss-to-css . dist",
+    "bump:patch": "bash utils/bump.sh patch",
+    "bump:minor": "bash utils/bump.sh minor",
+    "bump:major": "bash utils/bump.sh major",
+    "publish:patch": "bash utils/bump.sh patch --publish",
+    "publish:minor": "bash utils/bump.sh minor --publish",
+    "publish:major": "bash utils/bump.sh major --publish"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kudoai/chatgpt.js.git"
+    "url": "git+https://github.com/KudoAI/chatgpt.js.git"
   },
   "keywords": [
-    "chatgpt",
-    "artificial intelligence",
-    "nlp",
-    "javascript",
-    "library",
-    "frontend",
-    "clientside",
-    "chatbot",
-    "openai",
     "ai",
+    "artificial intelligence",
+    "bot",
     "chat",
+    "chatbot",
+    "chatgpt",
+    "clientside",
+    "conversational ai",
+    "frontend",
     "gpt",
     "gpt3",
     "gpt4",
+    "javascript",
+    "library",
     "machine learning",
-    "conversational ai",
     "ml",
-    "bot"
+    "nlp",
+    "openai"
   ],
-  "author": [
-    {
-      "name": "KudoAI & contributors",
-      "url": "https://kudoai.com"
-    }
-  ],
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/kudoai/chatgpt.js/issues"
-  },
-  "homepage": "https://chatgpt.js.org",
+  "bugs": "https://github.com/KudoAI/chatgpt.js/issues",
   "devDependencies": {
-    "eslint": "^8.44.0"
+    "@adamlui/minify.js": "^1.8.5",
+    "@adamlui/scss-to-css": "^1.10.25",
+    "@eslint/css": "^0.2.0",
+    "@eslint/json": "^0.10.0",
+    "@eslint/markdown": "^6.2.2",
+    "@html-eslint/eslint-plugin": "^0.34.0",
+    "@html-eslint/parser": "^0.34.0",
+    "@stylistic/eslint-plugin-js": "^3.1.0",
+    "docsify-cli": "^4.4.4",
+    "eslint": "^9.20.1",
+    "eslint-plugin-import": "^2.31.0",
+    "eslint-plugin-regexp": "^2.7.0",
+    "eslint-plugin-yml": "^1.16.0",
+    "get-port": "^7.1.0",
+    "husky": "^9.1.7"
   }
 }
