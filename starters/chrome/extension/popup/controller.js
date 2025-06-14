@@ -1,5 +1,9 @@
 (async () => {
 
+    // Init SCHEME
+    if (window.matchMedia?.('(prefers-color-scheme: dark)').matches)
+        document.documentElement.classList.add('dark')
+
     // Import JS resources
     for (const resource of ['components/icons.js', 'lib/dom.js', 'lib/settings.js'])
         await import(chrome.runtime.getURL(resource))
@@ -56,7 +60,13 @@
         }
         if (entryData.type == 'category')
             entry.div.append(icons.create({ key: 'caretDown', size: 11, class: 'menu-caret menu-right-elem' }))
-        if (entryData.dependencies) entry.div.classList.add('disabled')
+        if (entryData.dependencies) {
+            const toDisable = Object.values(entryData.dependencies).flat().some(dep => !settings.typeIsEnabled(dep))
+            Object.assign(entry.div.style, {
+                transition: '', minHeight: 'auto', opacity: +!toDisable,
+                height: toDisable ? 0 : 'auto', visibility: toDisable ? 'hidden' : 'visible'
+            })
+        }
 
         // Add click listener
         entry.div.onclick = () => {
@@ -87,8 +97,17 @@
             for (const [ctrlKey, ctrlData] of Object.entries({ ...settings.categories, ...settings.controls }))
                 if (Object.values(ctrlData.dependencies || {}).flat().includes(entryData.key)) {
                     const depDiv = document.querySelector(`div#${ctrlKey}`) ; if (!depDiv) continue
-                    const toDisable = !settings.typeIsEnabled(entryData.key)
-                    depDiv.style.transition = toDisable ? '' : 'opacity 0.15s ease-in'
+                    const ctgChildrenDiv = depDiv.closest('.categorized-entries'),
+                          ctgChildren = ctgChildrenDiv.querySelectorAll('.menu-entry'),
+                          toDisable = !settings.typeIsEnabled(entryData.key)
+                    requestAnimationFrame(() => Object.assign(depDiv.closest('.categorized-entries').style, {
+                        height: `${dom.get.computedHeight(ctgChildren)}px`,
+                        transition: env.browser.isFF || toDisable ? '' : 'height 0.25s'
+                    }))
+                    Object.assign(depDiv.style, {
+                        transition: toDisable ? '' : 'opacity 0.15s ease-in', height: toDisable ? 0 : 'auto',
+                        visibility: toDisable ? 'hidden' : 'visible', opacity: +!toDisable
+                    })
                     depDiv.classList.toggle('disabled', toDisable)
                 }
         }
